@@ -1,24 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+ struct Book {
+           int number;
+           char title[10];
+           } ;
 
 int main(int argc, char *argv[])
 {
-    char *pc = NULL;
-    int i = 0;
+   struct Book *p ;
     
-    pc = (char*)malloc(100*sizeof(char));
-    if (pc == NULL){
-           printf("메모리항당오류/n");
-           exit(1);
-           }
-           
-    for (i=0;i<26;i++){
-        pc[i] = 'a' + i ;
+    p = (struct Book*)malloc(2*sizeof(struct Book));
+    
+    if (p== NULL) {
+    printf("메모리항당오류\n");
+    return;        
     }
-    pc[i] = 0 ;
-    printf("%s\n", pc);
-    free(pc);
+    p->number = 1 ;
+    strcpy(p->title, "C programming");
     
+    (p+1)->number = 2 ;
+    strcpy((p+1)->title, "Electronics");
+    
+    free(p);
+
     
   system("PAUSE");	
   return 0;
